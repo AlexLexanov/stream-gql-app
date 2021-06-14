@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 
 @ObjectType()
 @Entity({ name: 'season' })
-export class SeasonModel {
+export class SeasonEntity {
 
     @Field()
     @PrimaryGeneratedColumn()

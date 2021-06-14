@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { SeasonModel } from 'src/models/season.model';
+import { SeasonEntity } from 'src/models/serial/seasons/season/season.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class SeasonService {
-    constructor(@InjectRepository(SeasonModel)
-    private readonly repository: Repository<SeasonModel>) {}
+    constructor(@InjectRepository(SeasonEntity)
+    private readonly repository: Repository<SeasonEntity>) {}
 
     async create(season) {
         return this.repository.save(season)

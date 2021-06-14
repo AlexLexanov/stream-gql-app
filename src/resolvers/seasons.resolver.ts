@@ -1,8 +1,8 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { SeasonsModel } from 'src/models/seasons.model';
+import { SeasonsEntity } from 'src/models/serial/seasons/seasons.entity';
 import { SeasonsService } from 'src/services/seasons.service';
 
-@Resolver(() => SeasonsModel)
+@Resolver(() => SeasonsEntity)
 export class SeasonsResolver {
   constructor(private readonly service: SeasonsService) {}
 

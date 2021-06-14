@@ -1,7 +1,9 @@
 import { ObjectType, Field } from "@nestjs/graphql"
 import { IsNotEmpty } from "class-validator"
 import { CinemaEntity } from "../cinema/cinema.entity"
-import { SerialModel } from "../serial.model"
+import { CinemaModel } from "../cinema/cinema.model"
+import { SerialEntity } from "../serial/serial.entity"
+import { SerialModel } from "../serial/serial.model"
 
 @ObjectType()
 export class CategoriesModel {
@@ -16,8 +18,8 @@ export class CategoriesModel {
     @Field()
     public description: string
 
-    @Field(() => [SerialModel || CinemaEntity], { defaultValue: [], nullable: true })
-    public data: ConcatArray<CinemaEntity | SerialModel>
+    @Field(() => [SerialModel || CinemaModel], { defaultValue: [], nullable: true })
+    public data: ConcatArray<CinemaModel | SerialModel>
 }
 
 @ObjectType()

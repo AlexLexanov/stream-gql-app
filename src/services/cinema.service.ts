@@ -6,9 +6,7 @@ import { getRepository } from 'typeorm';
 @Injectable()
 export class CinemaService {
 
-    async create(cinema): Promise<CinemaModel> {
-        console.log(cinema);
-        
+    async create(cinema): Promise<CinemaModel> {        
         return await getRepository(CinemaEntity).save(cinema)
     }
 

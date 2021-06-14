@@ -1,10 +1,10 @@
 import { ObjectType, Field } from "@nestjs/graphql"
 import { Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
-import { SerialModel } from "./serial.model"
+import { SerialEntity } from "../serial.entity"
 
 @ObjectType()
 @Entity({ name: 'seasons' })
-export class SeasonsModel {
+export class SeasonsEntity {
 
     @Field()
     @PrimaryGeneratedColumn()
@@ -15,6 +15,6 @@ export class SeasonsModel {
     public type: string
 
     @Field()
-    @ManyToOne(() => SerialModel, s => s.seasons)
+    @ManyToOne(() => SerialEntity, s => s.seasons)
     public season: number
 }

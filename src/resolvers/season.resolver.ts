@@ -1,12 +1,12 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { SeasonModel } from 'src/models/season.model';
+import { SeasonEntity } from 'src/models/serial/seasons/season/season.entity';
 import { SeasonService } from 'src/services/season.service';
 
-@Resolver(() => SeasonModel)
+@Resolver(() => SeasonEntity)
 export class SeasonResolver {
   constructor(private readonly service: SeasonService) {}
 
-  @Mutation(() => SeasonModel, { name: 'addSeason' })
+  @Mutation(() => SeasonEntity, { name: 'addSeason' })
   async create(
       @Args('type') type: string,
       @Args('season') season: number

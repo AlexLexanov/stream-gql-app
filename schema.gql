@@ -2,11 +2,28 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type CinemaModel {
+  id: Float!
+  name: String!
+  discription: String!
+  genres: [String!]!
+  year: Float!
+  promoPoster: String
+  promoVideo: String
+  video: String
+  country: String!
+}
+
 type SerialModel {
   id: Float!
-  title: String!
-  description: String!
-  meta: String!
+  name: String!
+  discription: String!
+  genres: [String!]!
+  year: Float!
+  promoPoster: String
+  promoVideo: String
+  video: String
+  country: String!
 }
 
 type CategoriesModel {
@@ -23,19 +40,7 @@ type CategoriesPageModel {
   items: [CategoriesModel!]!
 }
 
-type CinemaModel {
-  id: Float!
-  name: String!
-  discription: String!
-  genres: [String!]!
-  year: Float!
-  promoPoster: String
-  promoVideo: String
-  video: String
-  country: String!
-}
-
-type SeasonModel {
+type SeasonEntity {
   id: Float!
   type: String!
   season: Float!
@@ -59,6 +64,8 @@ type Query {
   getCategories: [CategoriesModel!]!
   getCinemaById(id: Float!): CinemaModel!
   getCinemaAll: [CinemaModel!]!
+  getSerialById(id: Float!): SerialModel!
+  getSerialAll: [SerialModel!]!
 }
 
 type Mutation {
@@ -69,7 +76,10 @@ type Mutation {
   addCinema(cinema: CinemaInputCreate!): CinemaModel!
   editingCinema(cinema: CinemaInputCreate!, id: Float!): CinemaModel!
   removeCinema(id: Float!): CinemaModel!
-  addSeason(season: Float!, type: String!): SeasonModel!
+  addSerial(serial: SerialInputCreate!): SerialModel!
+  editingSerial(serial: SerialInputCreate!, id: Float!): SerialModel!
+  removeSerial(id: Float!): SerialModel!
+  addSeason(season: Float!, type: String!): SeasonEntity!
 }
 
 input CategoryInputCreate {
@@ -88,4 +98,19 @@ input CinemaInputCreate {
   promoVideo: String
   video: String
   country: String!
+  category: Float!
+}
+
+input SerialInputCreate {
+  name: String!
+  discription: String!
+  genres: [String!]!
+
+  """Year of issue"""
+  year: Float!
+  promoPoster: String
+  promoVideo: String
+  video: String
+  country: String!
+  category: Float!
 }

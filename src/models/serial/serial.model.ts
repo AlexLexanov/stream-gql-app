@@ -1,9 +1,10 @@
-import { ObjectType, Field } from "@nestjs/graphql"
-import { IsNotEmpty } from "class-validator"
-import { genreEnum } from "./cinema.enum"
+import { Field, ObjectType } from "@nestjs/graphql";
+import { IsNotEmpty } from "class-validator";
+import { genreEnum } from "../cinema/cinema.enum";
+
 
 @ObjectType()
-export class CinemaModel {
+export class SerialModel {
 
     @Field()
     public id: number
@@ -33,4 +34,5 @@ export class CinemaModel {
 
     @Field()
     public country: string
+
 }

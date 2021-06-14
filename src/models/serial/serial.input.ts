@@ -1,16 +1,10 @@
-import { InputType, Field, Int, ArgsType } from "@nestjs/graphql";
+import { Field, InputType, Int } from "@nestjs/graphql";
 import { IsNotEmpty } from "class-validator";
-import { genreEnum } from "./cinema.enum";
-
-type File = {
-    filename: String
-    mimetype: String
-    encoding: String
-  }
+import { genreEnum } from "../cinema/cinema.enum";
 
 @InputType()
-export class CinemaInputCreate {
-
+export class SerialInputCreate {
+    
     @Field(() => String)
     @IsNotEmpty({ message: "Не указано название" })
     public name: string
@@ -43,7 +37,7 @@ export class CinemaInputCreate {
 }
 
 @InputType()
-export class CinemaInputRemove {
+export class SerialInputRemove {
 
     @Field(() => Int)
     @IsNotEmpty({ message: "Какой удалить фильм?" })

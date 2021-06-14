@@ -1,12 +1,13 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { CategoriesEntity } from "../categories/categories.entity";
-import { genreEnum } from "./cinema.enum";
+import { genreEnum } from "../cinema/cinema.enum";
+import { SeasonsEntity } from "./seasons/seasons.entity";
 
-@Entity({ name: 'cinema' })
-export class CinemaEntity {
-
+@Entity({ name: 'serial' })
+export class SerialEntity {
+    
     @PrimaryGeneratedColumn()
-    public id: number
+    id: number
 
     @Column()
     public name: string
@@ -32,6 +33,9 @@ export class CinemaEntity {
     @Column({ type: "text" })
     public country: string
 
-    @ManyToOne(() => CategoriesEntity, c => c.cinema)
+    @ManyToOne(() => CategoriesEntity, c => c.serial)
     public category: number
+
+    @OneToMany(() => SeasonsEntity, s => s.season)
+    public seasons: SeasonsEntity[]
 }

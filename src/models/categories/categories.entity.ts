@@ -1,6 +1,8 @@
 import { AfterLoad, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { CinemaEntity } from "../cinema/cinema.entity";
-import { SerialModel } from "../serial.model";
+import { CinemaModel } from "../cinema/cinema.model";
+import { SerialEntity } from "../serial/serial.entity";
+import { SerialModel } from "../serial/serial.model";
 
 @Entity({ name: 'categories' })
 export class CategoriesEntity {
@@ -14,12 +16,12 @@ export class CategoriesEntity {
     @Column()
     public description: string
 
-    public data: ConcatArray<CinemaEntity | SerialModel>
+    public data: ConcatArray<CinemaModel | SerialModel>
 
     @OneToMany(() => CinemaEntity, c => c.category)
-    public cinema: CinemaEntity[]
+    public cinema: CinemaModel[]
 
-    @OneToMany(() => SerialModel, s => s.category)
+    @OneToMany(() => SerialEntity, s => s.category)
     public serial: SerialModel[]
 
     @AfterLoad()
