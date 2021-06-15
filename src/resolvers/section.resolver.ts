@@ -8,12 +8,12 @@ import { SectionService } from "src/services/section.service";
 export class SectionResolver {
     constructor(private readonly service: SectionService) {}
 
-    @Mutation(() => SectionModel, { name: 'createCategory'})
+    @Mutation(() => SectionModel, { name: 'createSection'})
     async create(@Args('input') input: SectionInputCreate): Promise<SectionModel> {
         return await this.service.create(input)
     }
 
-    @Mutation(() => SectionModel, { name: 'editingCategory' })
+    @Mutation(() => SectionModel, { name: 'editingSection' })
     async editing(@Args('id') id: number, @Args('input') input: SectionInputCreate): Promise<SectionModel> {
       return await this.service.editing(id, input);
     }

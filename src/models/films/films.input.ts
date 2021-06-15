@@ -29,7 +29,7 @@ export class FilmsInputCreate {
     public country: string
 
     @Field()
-    public category: number
+    public section: number
 }
 
 @InputType()

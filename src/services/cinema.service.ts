@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CinemaModel } from 'src/models/films/cinema/cinema.model';
 import { CinemaEntity } from 'src/models/films/cinema/cinema.entity';
 import { getRepository } from 'typeorm';
+import { FilmsModel } from 'src/models/films/films.model';
 
 @Injectable()
 export class CinemaService {
 
-    async create(cinema): Promise<CinemaModel> {        
+    async create(cinema): Promise<FilmsModel> {        
         return await getRepository(CinemaEntity).save(cinema)
     }
 
@@ -23,7 +23,7 @@ export class CinemaService {
         return await this.findOne(id)
     }
 
-    async remove(id): Promise<CinemaModel> {
+    async remove(id): Promise<FilmsModel> {
         const removeCinema = await this.findOne(id)
         await getRepository(CinemaEntity).delete(id)
         return removeCinema

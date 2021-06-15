@@ -70,8 +70,8 @@ type Query {
 
 type Mutation {
   register(password: String!, email: String!): UsersModel!
-  createCategory(input: SectionInputCreate!): SectionModel!
-  editingCategory(input: SectionInputCreate!, id: Float!): SectionModel!
+  createSection(input: SectionInputCreate!): SectionModel!
+  editingSection(input: SectionInputCreate!, id: Float!): SectionModel!
   removeSection(id: Float!): SectionModel!
   addCinema(cinema: FilmsInputCreate!): FilmsModel!
   editingCinema(cinema: FilmsInputCreate!, id: Float!): FilmsModel!
@@ -95,5 +95,5 @@ input FilmsInputCreate {
   promoPoster: String
   promoVideo: String
   country: String!
-  category: Float!
+  section: Float!
 }

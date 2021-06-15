@@ -1,5 +1,5 @@
 import { ObjectType, Field } from "@nestjs/graphql"
-import { genreEnum } from "../films/cinema/cinema.enum"
+import { genreEnum } from "../films/genres.enum"
 
 @ObjectType()
 export class SectionModel {
