@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { SerialEntity } from 'src/models/serial/serial.entity';
-import { SerialModel } from 'src/models/serial/serial.model';
+import { FilmsModel } from 'src/models/films/films.model';
+import { SerialEntity } from 'src/models/films/serial/serial.entity';
+
 import { getRepository } from 'typeorm';
 
 @Injectable()
 export class SerialService {
 
-    async create(serial): Promise<SerialModel> {        
+    async create(serial): Promise<FilmsModel> {        
         return await getRepository(SerialEntity).save(serial)
     }
 
@@ -23,7 +24,7 @@ export class SerialService {
         return await this.findOne(id)
     }
 
-    async remove(id): Promise<SerialModel> {
+    async remove(id): Promise<FilmsModel> {
         const removeCinema = await this.findOne(id)
         await getRepository(SerialEntity).delete(id)
         return removeCinema

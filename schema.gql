@@ -2,42 +2,42 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type CinemaModel {
-  id: Float!
-  name: String!
-  discription: String!
-  genres: [String!]!
-  year: Float!
-  promoPoster: String
-  promoVideo: String
-  video: String
-  country: String!
-}
-
-type SerialModel {
-  id: Float!
-  name: String!
-  discription: String!
-  genres: [String!]!
-  year: Float!
-  promoPoster: String
-  promoVideo: String
-  video: String
-  country: String!
-}
-
-type CategoriesModel {
+type SectionModel {
   id: Float!
   name: String!
   description: String!
-  data: [SerialModel!]
+  data: [ConcatFilmsModel!]
 }
 
-type CategoriesPageModel {
+type SectionPageModel {
   page: Float!
   totalPage: Float!
   size: Float!
-  items: [CategoriesModel!]!
+  items: [SectionModel!]!
+}
+
+type ConcatFilmsModel {
+  id: Float!
+  name: String!
+  discription: String!
+  type: String!
+  genres: [String!]!
+  miniPoster: String
+  promoPoster: String
+  promoVideo: String
+  country: String!
+}
+
+type FilmsModel {
+  id: Float!
+  name: String!
+  discription: String!
+  type: String!
+  genres: [String!]!
+  miniPoster: String
+  promoPoster: String
+  promoVideo: String
+  country: String!
 }
 
 type SeasonEntity {
@@ -59,58 +59,41 @@ type UsersModel {
 type Query {
   getUser: UsersModel!
   login(password: String!, email: String!): UsersModel
-  getCategoryPages(page: Int = 1, size: Int = 10): CategoriesPageModel!
-  getCategoryById(id: Float!): CategoriesModel!
-  getCategories: [CategoriesModel!]!
-  getCinemaById(id: Float!): CinemaModel!
-  getCinemaAll: [CinemaModel!]!
-  getSerialById(id: Float!): SerialModel!
-  getSerialAll: [SerialModel!]!
+  getSectionPages(page: Int = 1, size: Int = 10): SectionPageModel!
+  getSectionById(id: Float!): SectionModel!
+  getSection: [SectionModel!]!
+  getCinemaById(id: Float!): FilmsModel!
+  getCinemaAll: [FilmsModel!]!
+  getSerialById(id: Float!): FilmsModel!
+  getSerialAll: [FilmsModel!]!
 }
 
 type Mutation {
   register(password: String!, email: String!): UsersModel!
-  createCategory(category: CategoryInputCreate!): CategoriesModel!
-  editingCategory(category: CategoryInputCreate!, id: Float!): CategoriesModel!
-  removeCategory(id: Float!): CategoriesModel!
-  addCinema(cinema: CinemaInputCreate!): CinemaModel!
-  editingCinema(cinema: CinemaInputCreate!, id: Float!): CinemaModel!
-  removeCinema(id: Float!): CinemaModel!
-  addSerial(serial: SerialInputCreate!): SerialModel!
-  editingSerial(serial: SerialInputCreate!, id: Float!): SerialModel!
-  removeSerial(id: Float!): SerialModel!
+  createCategory(input: SectionInputCreate!): SectionModel!
+  editingCategory(input: SectionInputCreate!, id: Float!): SectionModel!
+  removeSection(id: Float!): SectionModel!
+  addCinema(cinema: FilmsInputCreate!): FilmsModel!
+  editingCinema(cinema: FilmsInputCreate!, id: Float!): FilmsModel!
+  removeCinema(id: Float!): FilmsModel!
+  addSerial(serial: FilmsInputCreate!): FilmsModel!
+  editingSerial(serial: FilmsInputCreate!, id: Float!): FilmsModel!
+  removeSerial(id: Float!): FilmsModel!
   addSeason(season: Float!, type: String!): SeasonEntity!
 }
 
-input CategoryInputCreate {
+input SectionInputCreate {
   name: String!
   description: String!
 }
 
-input CinemaInputCreate {
+input FilmsInputCreate {
   name: String!
   discription: String!
   genres: [String!]!
-
-  """Year of issue"""
-  year: Float!
+  miniPoster: String
   promoPoster: String
   promoVideo: String
-  video: String
-  country: String!
-  category: Float!
-}
-
-input SerialInputCreate {
-  name: String!
-  discription: String!
-  genres: [String!]!
-
-  """Year of issue"""
-  year: Float!
-  promoPoster: String
-  promoVideo: String
-  video: String
   country: String!
   category: Float!
 }

@@ -1,9 +1,8 @@
 import { ObjectType, Field } from "@nestjs/graphql"
-import { IsNotEmpty } from "class-validator"
-import { genreEnum } from "./cinema.enum"
+import { genreEnum } from "./genres.enum"
 
 @ObjectType()
-export class CinemaModel {
+export class FilmsModel {
 
     @Field()
     public id: number
@@ -14,22 +13,20 @@ export class CinemaModel {
     @Field()
     public discription: string
 
+    @Field()
+    public type: string
+
     @Field(() => [String])
-    @IsNotEmpty({ message: "Не указан жанр" })
     public genres: genreEnum[]
 
-    @Field()
-    @IsNotEmpty({ message: "Не указан год выпуска" })
-    public year: number
+    @Field({ nullable: true })
+    public miniPoster: string
 
     @Field({ nullable: true })
     public promoPoster: string
 
     @Field({ nullable: true })
     public promoVideo: string
-
-    @Field({ nullable: true })
-    public video: string
 
     @Field()
     public country: string

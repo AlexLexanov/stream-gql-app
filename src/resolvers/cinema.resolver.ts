@@ -1,34 +1,34 @@
 import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
-import { CinemaInputCreate } from 'src/models/cinema/cinema.input';
-import { CinemaModel } from 'src/models/cinema/cinema.model';
+import { FilmsInputCreate } from 'src/models/films/films.input';
+import { FilmsModel } from 'src/models/films/films.model';
 import { CinemaService } from 'src/services/cinema.service';
 
-@Resolver(() => CinemaModel)
+@Resolver(() => FilmsModel)
 export class CinemaResolver {
   constructor(private readonly service: CinemaService) {}
 
-  @Mutation(() => CinemaModel, { name: 'addCinema' })
-  async create(@Args('cinema') cinema: CinemaInputCreate): Promise<CinemaModel> {
+  @Mutation(() => FilmsModel, { name: 'addCinema' })
+  async create(@Args('cinema') cinema: FilmsInputCreate): Promise<FilmsModel> {
     return await this.service.create(cinema);
   }
 
-  @Mutation(() => CinemaModel, { name: 'editingCinema' })
-  async editing(@Args('id') id: number, @Args('cinema') cinema: CinemaInputCreate): Promise<CinemaModel> {
+  @Mutation(() => FilmsModel, { name: 'editingCinema' })
+  async editing(@Args('id') id: number, @Args('cinema') cinema: FilmsInputCreate): Promise<FilmsModel> {
     return await this.service.editing(id, cinema);
   }
 
-  @Mutation(() => CinemaModel, { name: 'removeCinema' })
-  async remove(@Args('id') id: number): Promise<CinemaModel> {
+  @Mutation(() => FilmsModel, { name: 'removeCinema' })
+  async remove(@Args('id') id: number): Promise<FilmsModel> {
     return await this.service.remove(id);
   }
 
-  @Query(() => CinemaModel, { name: 'getCinemaById' })
-  async getOne(@Args('id') id: number): Promise<CinemaModel> {
+  @Query(() => FilmsModel, { name: 'getCinemaById' })
+  async getOne(@Args('id') id: number): Promise<FilmsModel> {
     return await this.service.findOne(id)
   }
 
-  @Query(() => [CinemaModel], { name: 'getCinemaAll' })
-  async getAll(): Promise<CinemaModel[]> {
+  @Query(() => [FilmsModel], { name: 'getCinemaAll' })
+  async getAll(): Promise<FilmsModel[]> {
     return await this.service.findAll()
   }
 }

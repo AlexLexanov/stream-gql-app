@@ -1,21 +1,20 @@
 import { Injectable } from '@nestjs/common';
-import { CategoriesPageModel, CategoriesModel } from 'src/models/categories/categories.model';
-import { CategoriesEntity } from 'src/models/categories/categories.entity';
+import { SectionPageModel, SectionModel } from 'src/models/section/section.model';
+import { SectionEntity } from 'src/models/section/section.entity';
 import { getConnection, getRepository } from 'typeorm';
 
 @Injectable()
-export class CategoriesService {
-    constructor() {}
+export class SectionService {
 
-    async create(category): Promise<CategoriesModel> {
-        return await getRepository(CategoriesEntity).save(category)
+    async create(category): Promise<any> {
+        return await getRepository(SectionEntity).save(category)
     }
 
-    async editing(id, data): Promise<CategoriesModel> {
+    async editing(id, data): Promise<any> {
         const editData = JSON.parse(JSON.stringify(data))
         await getConnection()
         .createQueryBuilder()
-        .update(CategoriesEntity)
+        .update(SectionEntity)
         .set(editData)
         .where("id = :id", { id })
         .execute()
@@ -23,14 +22,14 @@ export class CategoriesService {
         return await this.findOne(id)
     }
 
-    async remove(id): Promise<CategoriesModel> {
+    async remove(id): Promise<any> {
         let removeCategory = this.findOne(id)
-        await getRepository(CategoriesEntity).delete(id)
+        await getRepository(SectionEntity).delete(id)
         return removeCategory
     }
 
-    async getPages({ page, size }): Promise<CategoriesPageModel> {
-        const [ items, couns ] = await getRepository(CategoriesEntity)
+    async getPages({ page, size }): Promise<any> {
+        const [ items, couns ] = await getRepository(SectionEntity)
         .createQueryBuilder('category')
         .leftJoinAndSelect('category.cinema', 'cinema')
         .leftJoinAndSelect('category.serial', 'serial')
@@ -47,8 +46,8 @@ export class CategoriesService {
         }
     }
 
-    async findOne(id): Promise<CategoriesModel> {               
-        return await getRepository(CategoriesEntity)
+    async findOne(id): Promise<any> {               
+        return await getRepository(SectionEntity)
         .createQueryBuilder('category')
         .leftJoinAndSelect('category.cinema', 'cinema')
         .leftJoinAndSelect('category.serial', 'serial')
@@ -56,8 +55,8 @@ export class CategoriesService {
         .getOne();
     }
 
-    async findAll(): Promise<CategoriesModel[]> {
-        return await getRepository(CategoriesEntity)
+    async findAll(): Promise<any> {
+        return await getRepository(SectionEntity)
         .createQueryBuilder('category')
         .leftJoinAndSelect('category.cinema', 'cinema')
         .leftJoinAndSelect('category.serial', 'serial')

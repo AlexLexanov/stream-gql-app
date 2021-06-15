@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CinemaModel } from 'src/models/cinema/cinema.model';
-import { CinemaEntity } from 'src/models/cinema/cinema.entity';
+import { CinemaModel } from 'src/models/films/cinema/cinema.model';
+import { CinemaEntity } from 'src/models/films/cinema/cinema.entity';
 import { getRepository } from 'typeorm';
 
 @Injectable()

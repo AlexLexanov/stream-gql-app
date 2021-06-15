@@ -2,7 +2,7 @@ import { InputType, Field, ArgsType, Int } from "@nestjs/graphql";
 import { IsNotEmpty } from "class-validator";
 
 @InputType()
-export class CategoryInputCreate {
+export class SectionInputCreate {
 
     @Field()
     @IsNotEmpty({ message: "Не указано название категории" })

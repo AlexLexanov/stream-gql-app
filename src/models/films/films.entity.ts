@@ -1,9 +1,9 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { CategoriesEntity } from "../categories/categories.entity";
-import { genreEnum } from "./cinema.enum";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { genreEnum } from "./genres.enum";
 
-@Entity({ name: 'cinema' })
-export class CinemaEntity {
+
+@Entity()
+export abstract class FilmEntity {
 
     @PrimaryGeneratedColumn()
     public id: number
@@ -14,11 +14,14 @@ export class CinemaEntity {
     @Column()
     public discription: string
 
+    @Column({ default: 'cinema' })
+    public type: string
+
     @Column({ type: "enum", array: true, enum: genreEnum, default: [] })
     public genres: genreEnum[]
 
-    @Column({ type: "int" })
-    public year: number
+    @Column({ nullable: true })
+    public miniPoster: string
 
     @Column({ type: "text", default: '' })
     public promoPoster: string
@@ -26,12 +29,7 @@ export class CinemaEntity {
     @Column({ type: "text", default: '' })
     public promoVideo: string
 
-    @Column({ type: "text", default: '' })
-    public video: string
-
     @Column({ type: "text" })
     public country: string
-
-    @ManyToOne(() => CategoriesEntity, c => c.cinema)
-    public category: number
+    
 }

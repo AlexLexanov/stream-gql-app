@@ -1,5 +1,5 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql';
-import { SeasonEntity } from 'src/models/serial/seasons/season/season.entity';
+import { SeasonEntity } from 'src/models/films/serial/seasons/season/season.entity';
 import { SeasonService } from 'src/services/season.service';
 
 @Resolver(() => SeasonEntity)

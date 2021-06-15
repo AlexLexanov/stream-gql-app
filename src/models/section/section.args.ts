@@ -2,7 +2,7 @@ import { ArgsType, Field, Int } from "@nestjs/graphql"
 import { Min, Max } from "class-validator"
 
 @ArgsType()
-export class CategoryArgsPage {
+export class SectionArgsPage {
 
     @Field(() => Int)
     @Min(1, { message: 'Минимальное значение 1' })

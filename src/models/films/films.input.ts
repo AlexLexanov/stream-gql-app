@@ -1,9 +1,9 @@
 import { Field, InputType, Int } from "@nestjs/graphql";
 import { IsNotEmpty } from "class-validator";
-import { genreEnum } from "../cinema/cinema.enum";
+import { genreEnum } from "./genres.enum";
 
 @InputType()
-export class SerialInputCreate {
+export class FilmsInputCreate {
     
     @Field(() => String)
     @IsNotEmpty({ message: "Не указано название" })
@@ -16,18 +16,14 @@ export class SerialInputCreate {
     @IsNotEmpty({ message: "Не указан жанр" })
     public genres: genreEnum[]
 
-    @Field(() => Number, { description: 'Year of issue' })
-    @IsNotEmpty({ message: "Не указан год выпуска" })
-    public year: number
+    @Field({ nullable: true })
+    public miniPoster: string
 
     @Field({ nullable: true })
     public promoPoster: string
 
     @Field({ nullable: true })
     public promoVideo: string
-
-    @Field({ nullable: true })
-    public video: string
 
     @Field()
     public country: string
@@ -37,7 +33,7 @@ export class SerialInputCreate {
 }
 
 @InputType()
-export class SerialInputRemove {
+export class FilmsInputRemove {
 
     @Field(() => Int)
     @IsNotEmpty({ message: "Какой удалить фильм?" })

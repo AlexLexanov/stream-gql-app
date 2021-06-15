@@ -22,18 +22,14 @@ export class CinemaInputCreate {
     @IsNotEmpty({ message: "Не указан жанр" })
     public genres: genreEnum[]
 
-    @Field(() => Number, { description: 'Year of issue' })
-    @IsNotEmpty({ message: "Не указан год выпуска" })
-    public year: number
+    @Field({ nullable: true })
+    public miniPoster: string
 
     @Field({ nullable: true })
     public promoPoster: string
 
     @Field({ nullable: true })
     public promoVideo: string
-
-    @Field({ nullable: true })
-    public video: string
 
     @Field()
     public country: string

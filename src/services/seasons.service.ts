@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { SeasonsEntity } from 'src/models/serial/seasons/seasons.entity';
+import { SeasonsEntity } from 'src/models/films/serial/seasons/seasons.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
