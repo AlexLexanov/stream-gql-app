@@ -1,7 +1,73 @@
-schema {
-  query: Query
-  mutation: Mutation
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type SectionModel {
+  id: Float!
+  name: String!
+  description: String!
+  data: [ConcatFilmsModel!]
 }
+
+type SectionPageModel {
+  page: Float!
+  totalPage: Float!
+  size: Float!
+  items: [SectionModel!]!
+}
+
+type ConcatFilmsModel {
+  id: Float!
+  name: String!
+  discription: String!
+  type: String!
+  genres: [String!]!
+  miniPoster: String
+  promoPoster: String
+  promoVideo: String
+  country: String!
+}
+
+type FilmsModel {
+  id: Float!
+  name: String!
+  discription: String!
+  type: String!
+  genres: [String!]!
+  miniPoster: String
+  promoPoster: String
+  promoVideo: String
+  country: String!
+}
+
+type SeasonEntity {
+  id: Float!
+  type: String!
+  season: Float!
+}
+
+type UsersModel {
+  lastname: String!
+  firstname: String!
+  middlename: String!
+  email: String!
+  isVerified: Boolean!
+  isPremium: Boolean!
+  token: String!
+}
+
+type Query {
+  getUser: UsersModel!
+  login(password: String!, email: String!): UsersModel
+  getSectionPages(page: Int = 1, size: Int = 10): SectionPageModel!
+  getSectionById(id: Float!): SectionModel!
+  getSection: [SectionModel!]!
+  getCinemaById(id: Float!): FilmsModel!
+  getCinemaAll: [FilmsModel!]!
+  getSerialById(id: Float!): FilmsModel!
+  getSerialAll: [FilmsModel!]!
+}
+
 type Mutation {
   register(password: String!, email: String!): UsersModel!
   createSection(input: SectionInputCreate!): SectionModel!
