@@ -1,4 +1,5 @@
 import { ObjectType, Field } from "@nestjs/graphql"
+import { GraphQLUpload } from "graphql-tools"
 import { genreEnum } from "./genres.enum"
 
 @ObjectType()
@@ -19,13 +20,13 @@ export class FilmsModel {
     @Field(() => [String])
     public genres: genreEnum[]
 
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     public miniPoster: string
 
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     public promoPoster: string
 
-    @Field({ nullable: true })
+    @Field(() => String, { nullable: true })
     public promoVideo: string
 
     @Field()

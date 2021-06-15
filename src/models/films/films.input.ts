@@ -1,5 +1,6 @@
 import { Field, InputType, Int } from "@nestjs/graphql";
 import { IsNotEmpty } from "class-validator";
+import { GraphQLUpload } from "graphql-tools";
 import { genreEnum } from "./genres.enum";
 
 @InputType()
@@ -16,13 +17,13 @@ export class FilmsInputCreate {
     @IsNotEmpty({ message: "Не указан жанр" })
     public genres: genreEnum[]
 
-    @Field({ nullable: true })
+    @Field(() => GraphQLUpload, { nullable: true })
     public miniPoster: string
 
-    @Field({ nullable: true })
+    @Field(() => GraphQLUpload, { nullable: true })
     public promoPoster: string
 
-    @Field({ nullable: true })
+    @Field(() => GraphQLUpload, { nullable: true })
     public promoVideo: string
 
     @Field()

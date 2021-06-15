@@ -91,9 +91,12 @@ input FilmsInputCreate {
   name: String!
   discription: String!
   genres: [String!]!
-  miniPoster: String
-  promoPoster: String
-  promoVideo: String
+  miniPoster: Upload
+  promoPoster: Upload
+  promoVideo: Upload
   country: String!
   section: Float!
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
