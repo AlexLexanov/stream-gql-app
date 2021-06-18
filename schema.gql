@@ -74,6 +74,7 @@ type Mutation {
   editingSection(input: SectionInputCreate!, id: Float!): SectionModel!
   removeSection(id: Float!): SectionModel!
   addCinema(cinema: FilmsInputCreate!): FilmsModel!
+  uploadFile(file: Upload!): Boolean
   editingCinema(cinema: FilmsInputCreate!, id: Float!): FilmsModel!
   removeCinema(id: Float!): FilmsModel!
   addSerial(serial: FilmsInputCreate!): FilmsModel!
@@ -91,9 +92,6 @@ input FilmsInputCreate {
   name: String!
   discription: String!
   genres: [String!]!
-  miniPoster: Upload
-  promoPoster: Upload
-  promoVideo: Upload
   country: String!
   section: Float!
 }

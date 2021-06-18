@@ -1,5 +1,4 @@
 import { ObjectType, Field } from "@nestjs/graphql"
-import { GraphQLUpload } from "graphql-tools"
 import { genreEnum } from "./genres.enum"
 
 @ObjectType()

@@ -21,6 +21,8 @@ import { CinemaService } from 'src/services/cinema.service';
 import { SeasonsService } from 'src/services/seasons.service';
 import { SeasonService } from 'src/services/season.service';
 import { SerialService } from 'src/services/serial.service';
+import { MulterConfigService } from 'src/config/upload.config';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -31,6 +33,9 @@ import { SerialService } from 'src/services/serial.service';
       SeasonsEntity,
       SeasonEntity
     ]),
+    MulterModule.registerAsync({
+      useClass: MulterConfigService,
+    }),
   ],
   providers: [
     SectionService,
