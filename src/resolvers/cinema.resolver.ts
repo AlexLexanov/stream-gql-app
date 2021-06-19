@@ -1,12 +1,10 @@
 import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
-import { FilmsInputCreate, Upload } from 'src/models/films/films.input';
+import { FilmsInputCreate } from 'src/models/films/films.input';
 import { FilmsModel } from 'src/models/films/films.model';
 import { CinemaService } from 'src/services/cinema.service';
 
-// import { GraphQLUpload } from 'apollo-server-express';
 import { FileUpload, GraphQLUpload } from "graphql-upload"
-
-import { createWriteStream, readFile } from 'fs';
+import { createWriteStream } from 'fs';
 
 @Resolver(() => FilmsModel)
 export class CinemaResolver {
@@ -19,15 +17,19 @@ export class CinemaResolver {
 
   @Mutation(() => Boolean, { nullable: true })
   async uploadFile(@Args({ name: 'file', type: () => GraphQLUpload }) file: FileUpload) {
-    const { filename, mimetype, encoding, createReadStream } = file;
-    console.log('attachment:', filename, mimetype, encoding);
+    const { filename, createReadStream } = file;
+    let arrFile = filename.split('.')
+    arrFile[0] = Date.now()
 
-    return new Promise((resolve, reject) =>
-      createReadStream()
-        .pipe(createWriteStream(`./upload/${filename}`))
-        .on('finish', () => resolve(true))
-        .on('error', (error) => reject(error)),
-    );
+    const fileStream = await createReadStream()
+        .pipe(createWriteStream(`./upload/${arrFile.join('.')}`))
+        .on('finish', () => true)
+        .on('error', (error) => error)
+
+      console.log(fileStream.path.slice(1));
+
+      return true
+
   }
 
   @Mutation(() => FilmsModel, { name: 'editingCinema' })
