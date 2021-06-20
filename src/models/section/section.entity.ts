@@ -9,13 +9,13 @@ export class SectionEntity {
     @PrimaryGeneratedColumn()
     public id: number
 
-    @Column()
+    @Column({ unique: true })
     public name: string
 
     @Column()
     public description: string
 
-    public data: ConcatArray<FilmsModel>
+    public films: ConcatArray<FilmsModel>
 
     @OneToMany(() => CinemaEntity, c => c.section)
     public cinema: FilmsModel[]
@@ -25,6 +25,6 @@ export class SectionEntity {
 
     @AfterLoad()
     public async setVal() {
-      this.data = [ ...this.cinema, ...this.serial ].sort(( a, b ) => a.id - b.id)
+      this.films = [ ...this.cinema, ...this.serial ].sort(( a, b ) => a.id - b.id)
     }
 }

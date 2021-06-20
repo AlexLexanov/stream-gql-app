@@ -1,8 +1,9 @@
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+
 import { SectionArgsPage } from "src/models/section/section.args";
 import { SectionInputCreate } from "src/models/section/section.input";
-import { SectionPageModel, SectionModel } from "src/models/section/section.model";
 import { SectionService } from "src/services/section.service";
+import { SectionPageModel, SectionModel } from "src/models/section/section.model";
 
 @Resolver(() => SectionModel)
 export class SectionResolver {

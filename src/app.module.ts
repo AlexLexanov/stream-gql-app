@@ -16,6 +16,8 @@ import { UsersModule } from './modules/users.module';
 // ================
 import { MailService } from './services/mail.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
+
+// ================
 import { join } from 'path';
 
 @Module({
@@ -24,24 +26,24 @@ import { join } from 'path';
     SectionModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
-    GraphQLModule.forRoot({ 
+    GraphQLModule.forRoot({
       installSubscriptionHandlers: true,
       uploads: false,
-      autoSchemaFile: 'schema.gql' 
+      autoSchemaFile: 'schema.gql',
     }),
     MailerModule.forRootAsync({ useClass: MailerConfigService }),
     ServeStaticModule.forRoot({
-      serveRoot: "/upload/",
+      serveRoot: '/upload/',
       rootPath: join(__dirname, '..', 'upload'),
       exclude: ['/graphql*'],
       serveStaticOptions: {
         cacheControl: true,
-        maxAge: 1000000
-      }
+        maxAge: 1000000,
+      },
     }),
   ],
-  providers: [ MailService ],
-  exports: [ MailService ],
+  providers: [MailService],
+  exports: [MailService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

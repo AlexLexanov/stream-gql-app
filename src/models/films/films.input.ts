@@ -17,15 +17,6 @@ export class FilmsInputCreate {
     @IsNotEmpty({ message: "Не указан жанр" })
     public genres: genreEnum[]
 
-    @Field(() => GraphQLUpload, { nullable: true })
-    public miniPoster: FileUpload
-
-    @Field(() => GraphQLUpload, { nullable: true })
-    public promoPoster: FileUpload
-
-    @Field(() => GraphQLUpload, { nullable: true })
-    public promoVideo: FileUpload
-
     @Field()
     public country: string
 
@@ -40,4 +31,20 @@ export class FilmsInputRemove {
     @IsNotEmpty({ message: "Какой удалить фильм?" })
     public id: number
 
+}
+
+@InputType()
+export class FilmsInputUpload {
+
+    @Field(() => Int)
+    @IsNotEmpty({ message: "Куда добавить?" })
+    public id: number
+
+    @Field(() => GraphQLUpload)
+    @IsNotEmpty({ message: "Файл не выбран!" })
+    public file: FileUpload
+
+    @Field(() => String)
+    @IsNotEmpty({ message: "Укажите поле!" })
+    public field: string
 }

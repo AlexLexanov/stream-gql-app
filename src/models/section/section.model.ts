@@ -1,5 +1,5 @@
 import { ObjectType, Field } from "@nestjs/graphql"
-import { genreEnum } from "../films/genres.enum"
+import { FilmsModel } from "../films/films.model"
 
 @ObjectType()
 export class SectionModel {
@@ -13,8 +13,8 @@ export class SectionModel {
     @Field()
     public description: string
 
-    @Field(() => [ConcatFilmsModel], { defaultValue: [], nullable: true })
-    public data: ConcatFilmsModel[]
+    @Field(() => [FilmsModel], { defaultValue: [], nullable: true })
+    public films: FilmsModel[]
 }
 
 @ObjectType()
@@ -31,36 +31,4 @@ export class SectionPageModel {
 
     @Field(() => [SectionModel])
     items: SectionModel[]
-}
-
-@ObjectType()
-export class ConcatFilmsModel {
-
-    @Field()
-    public id: number
-
-    @Field()
-    public name: string
-
-    @Field()
-    public discription: string
-
-    @Field()
-    public type: string
-
-    @Field(() => [String])
-    public genres: genreEnum[]
-
-    @Field({ nullable: true })
-    public miniPoster: string
-
-    @Field({ nullable: true })
-    public promoPoster: string
-
-    @Field({ nullable: true })
-    public promoVideo: string
-
-    @Field()
-    public country: string
-
 }

@@ -1,7 +1,8 @@
 import { Transform } from "class-transformer";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 import moment from "moment";
+import { SeasonsEntity } from "../seasons/seasons.entity";
 
 @Entity()
 export class SerialDataEntity {
@@ -19,6 +20,10 @@ export class SerialDataEntity {
 
     @Column()
     public details: string
+
+
+    @OneToMany(() => SeasonsEntity, s => s.serial)
+    public seasons: SeasonsEntity[]
     
     @Column({ default: 0 })
     public seasonsCount: number

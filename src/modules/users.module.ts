@@ -14,9 +14,7 @@ import { UsersService } from 'src/services/users.service';
     UsersModule,
     PassportModule,
     TypeOrmModule.forFeature([ UsersModel ]),
-    JwtModule.registerAsync({
-      useClass: JwtConfigService
-    }),
+    JwtModule.registerAsync({ useClass: JwtConfigService }),
   ],
   providers: [UsersResolver, UsersService, JwtStrategy, EncryptionService],
   exports: [UsersService],

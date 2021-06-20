@@ -1,7 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { genreEnum } from "./genres.enum";
 
-
 @Entity()
 export abstract class FilmEntity {
 
@@ -20,7 +19,7 @@ export abstract class FilmEntity {
     @Column({ type: "enum", array: true, enum: genreEnum, default: [] })
     public genres: genreEnum[]
 
-    @Column({ nullable: true })
+    @Column({ type: "text", default: '' })
     public miniPoster: string
 
     @Column({ type: "text", default: '' })

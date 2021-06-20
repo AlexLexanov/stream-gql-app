@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { CinemaEntity } from 'src/models/films/cinema/cinema.entity';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { getRepository } from 'typeorm';
+
+import { CinemaEntity } from 'src/models/films/cinema/cinema.entity';
 import { FilmsModel } from 'src/models/films/films.model';
 
 @Injectable()
@@ -18,7 +19,7 @@ export class CinemaService {
         .update(CinemaEntity)
         .set(editData)
         .where('id = :id', { id })
-        .execute()
+        .execute()        
 
         return await this.findOne(id)
     }
@@ -30,10 +31,13 @@ export class CinemaService {
     }
 
     async findOne(id): Promise<any> {
-        return await getRepository(CinemaEntity)
+        const find = await getRepository(CinemaEntity)
         .createQueryBuilder()
         .where("id = :id", { id })
         .getOne();
+
+        if (!Boolean(find)) throw new UnauthorizedException(`Не найдено с данным id ${id}`); 
+        return find
     }
 
     async findAll(): Promise<any> {

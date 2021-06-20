@@ -2,32 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type SectionModel {
-  id: Float!
-  name: String!
-  description: String!
-  data: [ConcatFilmsModel!]
-}
-
-type SectionPageModel {
-  page: Float!
-  totalPage: Float!
-  size: Float!
-  items: [SectionModel!]!
-}
-
-type ConcatFilmsModel {
-  id: Float!
-  name: String!
-  discription: String!
-  type: String!
-  genres: [String!]!
-  miniPoster: String
-  promoPoster: String
-  promoVideo: String
-  country: String!
-}
-
 type FilmsModel {
   id: Float!
   name: String!
@@ -38,6 +12,20 @@ type FilmsModel {
   promoPoster: String
   promoVideo: String
   country: String!
+}
+
+type SectionModel {
+  id: Float!
+  name: String!
+  description: String!
+  films: [FilmsModel!]
+}
+
+type SectionPageModel {
+  page: Float!
+  totalPage: Float!
+  size: Float!
+  items: [SectionModel!]!
 }
 
 type SeasonEntity {
@@ -74,12 +62,13 @@ type Mutation {
   editingSection(input: SectionInputCreate!, id: Float!): SectionModel!
   removeSection(id: Float!): SectionModel!
   addCinema(cinema: FilmsInputCreate!): FilmsModel!
-  uploadFile(file: Upload!): Boolean
   editingCinema(cinema: FilmsInputCreate!, id: Float!): FilmsModel!
   removeCinema(id: Float!): FilmsModel!
+  uploadFileCinema(input: FilmsInputUpload!): Boolean!
   addSerial(serial: FilmsInputCreate!): FilmsModel!
   editingSerial(serial: FilmsInputCreate!, id: Float!): FilmsModel!
   removeSerial(id: Float!): FilmsModel!
+  uploadFileSerial(input: FilmsInputUpload!): Boolean!
   addSeason(season: Float!, type: String!): SeasonEntity!
 }
 
@@ -92,11 +81,14 @@ input FilmsInputCreate {
   name: String!
   discription: String!
   genres: [String!]!
-  miniPoster: Upload
-  promoPoster: Upload
-  promoVideo: Upload
   country: String!
   section: Float!
+}
+
+input FilmsInputUpload {
+  id: Int!
+  file: Upload!
+  field: String!
 }
 
 """The `Upload` scalar type represents a file upload."""

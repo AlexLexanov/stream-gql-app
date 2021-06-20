@@ -1,5 +1,6 @@
 import { UseGuards } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+
 import { UsersModel } from "src/models/users.model";
 import { JwtAuthGuard } from "src/security/jwt.guard";
 import { UsersService } from "src/services/users.service";
